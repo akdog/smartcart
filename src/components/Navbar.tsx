@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -16,7 +16,11 @@ type Props = {
 const Navbar = ({ setIsActiveMenu }: Props) => {
   const handleMenu = () => {
     setIsActiveMenu(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const location = useLocation();
+  const currentLocation = location.pathname;
 
   return (
     <Main>
@@ -26,8 +30,17 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
       <div className="icon-container">
         <Link to="/">
           <div className="single-icon">
-            <GoHome size="25" />
-            <p>Home</p>
+            {currentLocation === "/" ? (
+              <>
+                <GoHome size="25" color="#4BA4DF" />
+                <p style={{ color: "#4BA4DF" }}>Home</p>
+              </>
+            ) : (
+              <>
+                <GoHome size="25" />
+                <p>Home</p>
+              </>
+            )}
           </div>
         </Link>
         <div className="single-icon">
@@ -50,9 +63,9 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
 const Main = styled.nav`
   padding: 1rem;
 
-  /* border-style: solid;
+  border-style: solid;
   border-width: 1px 0;
-  border-color: #000; */
+  border-color: #000;
 
   position: sticky;
   bottom: 0%;

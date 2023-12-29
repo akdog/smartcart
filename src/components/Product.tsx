@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 //Import Icons
 import { CiHeart } from "react-icons/ci";
@@ -9,10 +12,42 @@ type Props = {
 };
 
 const Product = ({ item }: Props) => {
+  const [isWishList, setIsWishlist] = useState<boolean>(false);
+
+  const handleWish = () => {
+    setIsWishlist(!isWishList);
+  };
+
   return (
     <Main>
       <div className="product-container">
-        <CiHeart size="35" />
+        {isWishList ? (
+          <motion.div
+            className="animated-heart"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+            }}
+          >
+            <CiHeart size="35" color="red" onClick={handleWish} />
+          </motion.div>
+        ) : (
+          <motion.div
+            className="animated-heart"
+            initial={{ scale: 0 }}
+            animate={{ rotate: 360, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+            }}
+          >
+            <CiHeart size="35" onClick={handleWish} />
+          </motion.div>
+        )}
         <div className="img-container">
           <img src={item.image} />
         </div>
@@ -47,6 +82,10 @@ const Main = styled.div`
         height: 100%;
         object-fit: cover;
       }
+    }
+
+    .animated-heart {
+      margin-left: auto;
     }
 
     svg {

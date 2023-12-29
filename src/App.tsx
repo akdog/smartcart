@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
@@ -13,9 +13,12 @@ import StoreProvider from "./context/StoreProvider";
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
 
+  const location = useLocation();
+  const currentLocation = location.pathname;
+
   return (
     <>
-      <StoreProvider>
+      <StoreProvider currentLocation={currentLocation}>
         <GlobalStyle isActiveMenu={isActiveMenu} />
         <ThemeProvider theme={theme}>
           <Routes>

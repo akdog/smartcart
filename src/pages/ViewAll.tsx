@@ -16,7 +16,11 @@ const ViewAll = ({ isActiveMenu, setIsActiveMenu }: Props) => {
       <Header />
       <Products />
       <Navbar setIsActiveMenu={setIsActiveMenu} />
-      {isActiveMenu ? <Menu setIsActiveMenu={setIsActiveMenu} /> : ""}
+      {isActiveMenu ? (
+        <Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

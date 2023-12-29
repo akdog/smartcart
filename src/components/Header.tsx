@@ -30,7 +30,6 @@ const Header = () => {
 
 const Main = styled.div`
   padding: 1rem;
-  /* background-color: ${(props) => props.theme.colors.primaryFirst}; */
 `;
 
 const HeaderStyled = styled.div`
@@ -54,7 +53,7 @@ const HeaderStyled = styled.div`
   }
 
   .background-icon {
-    background: ${(props) => props.theme.colors.NeutralGray};
+    background: #e5e5e5;
     border-radius: 50%;
 
     width: 12vw;
