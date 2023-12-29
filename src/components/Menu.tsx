@@ -1,6 +1,9 @@
 import { IoIosArrowBack } from "react-icons/io";
 
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+
+import { menuNames } from "../utils/MenuName.ts";
 import MenuItems from "./MenuItems";
 
 type Props = {
@@ -12,41 +15,11 @@ const Menu = ({ setIsActiveMenu }: Props) => {
     setIsActiveMenu(false);
   };
 
-  const menuNames = [
-    {
-      name: "Wallet",
-    },
-    {
-      name: "Redeem Gift Card",
-    },
-    {
-      name: "Track Orders",
-    },
-    {
-      name: "Buy Again",
-    },
-    {
-      name: "Recently Searched",
-    },
-    {
-      name: "Coupons",
-    },
-    {
-      name: "Settings",
-    },
-    {
-      name: "Customer Support",
-    },
-    {
-      name: "Feedback",
-    },
-    {
-      name: "Privacy & Security",
-    },
-  ];
+  const location = useLocation();
+  const currentLocation = location.pathname;
 
   return (
-    <Main>
+    <Main style={{ top: currentLocation === "/all" ? "20%" : "3%" }}>
       <div className="header">
         <div className="icon-container">
           <IoIosArrowBack size="35" color="white" onClick={handleMenuHeader} />
@@ -55,9 +28,8 @@ const Menu = ({ setIsActiveMenu }: Props) => {
           <p>Menu</p>
         </div>
       </div>
-
       {menuNames.map((item) => (
-        <MenuItems item={item} />
+        <MenuItems item={item} key={item.id} />
       ))}
     </Main>
   );
@@ -65,7 +37,7 @@ const Menu = ({ setIsActiveMenu }: Props) => {
 
 const Main = styled.div`
   position: absolute;
-  top: 6%;
+  top: 4%;
 
   width: 100%;
 
@@ -73,17 +45,16 @@ const Main = styled.div`
     display: flex;
     background: ${(props) => props.theme.colors.primaryFirst};
 
-    padding: 0.5rem;
+    padding: 2rem 1rem;
 
     border-radius: 20px 20px 0px 00px;
-    .icon-container {
-    }
+
     .text-container {
       display: flex;
       justify-content: flex-end;
       align-items: center;
 
-      color: white;
+      color: #ffffff;
 
       width: 50%;
     }

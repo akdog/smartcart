@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -13,8 +15,10 @@ const Products = () => {
     return (
       <Main>
         <div className="header">
-          <h3>Just for you</h3>
-          <IoIosArrowForward size="35" />
+          <h3>View All</h3>
+          <Link to="/all">
+            <IoIosArrowForward size="30" />
+          </Link>
         </div>
         {data.map((item) => (
           <Product item={item} key={item.id} />

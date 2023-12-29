@@ -63,6 +63,8 @@ const SalesOffers = () => {
 };
 
 const Main = styled.div`
+  z-index: 1;
+
   .slider-container {
     text-align: center;
     background: linear-gradient(to right, #81b5e9, #c1d3e5);

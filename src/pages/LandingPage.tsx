@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 //Import Components
 import Header from "../components/Header";
@@ -10,9 +10,12 @@ import Menu from "../components/Menu";
 import styled from "styled-components";
 import { ProductContext } from "../context/store";
 
-const LandingPage = () => {
-  const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
+type Props = {
+  isActiveMenu: boolean;
+  setIsActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
+const LandingPage = ({ isActiveMenu, setIsActiveMenu }: Props) => {
   const data = useContext(ProductContext);
 
   if (data === undefined) {
@@ -20,7 +23,7 @@ const LandingPage = () => {
   }
 
   return (
-    <Main style={{ overflowY: isActiveMenu ? "auto" : "visible" }}>
+    <Main isActiveMenu={isActiveMenu}>
       <Header />
       <AllCategories />
       <SalesOffers />
@@ -31,8 +34,19 @@ const LandingPage = () => {
   );
 };
 
-const Main = styled.div`
+const Main = styled.div<{ isActiveMenu: boolean }>`
   position: relative;
+
+  ::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: ${(props) => (props.isActiveMenu ? "block" : "none")};
+  }
 `;
 
 export default LandingPage;

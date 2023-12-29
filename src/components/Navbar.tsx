@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 
 //Import Icons
@@ -22,10 +24,12 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
         <IoMdMenu id="menu-icon" onClick={handleMenu} />
       </div>
       <div className="icon-container">
-        <div className="single-icon">
-          <GoHome size="25" />
-          <p>Home</p>
-        </div>
+        <Link to="/">
+          <div className="single-icon">
+            <GoHome size="25" />
+            <p>Home</p>
+          </div>
+        </Link>
         <div className="single-icon">
           <FaRegHeart size="25" />
           <p>Wishlist</p>
@@ -46,9 +50,9 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
 const Main = styled.nav`
   padding: 1rem;
 
-  border-style: solid;
+  /* border-style: solid;
   border-width: 1px 0;
-  border-color: #000;
+  border-color: #000; */
 
   position: sticky;
   bottom: 0%;

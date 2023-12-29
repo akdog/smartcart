@@ -1,24 +1,50 @@
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
 
 //Import Pages
 import LandingPage from "./pages/LandingPage";
-import StoreProvider from "./context/storeProvider";
+import ViewAll from "./pages/ViewAll";
+
+//Import Context
+import StoreProvider from "./context/StoreProvider";
 
 const App = () => {
+  const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
+
   return (
     <>
       <StoreProvider>
-        <GlobalStyle />
+        <GlobalStyle isActiveMenu={isActiveMenu} />
         <ThemeProvider theme={theme}>
-          <LandingPage />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <LandingPage
+                  isActiveMenu={isActiveMenu}
+                  setIsActiveMenu={setIsActiveMenu}
+                />
+              }
+            />
+            <Route
+              path="/all"
+              element={
+                <ViewAll
+                  isActiveMenu={isActiveMenu}
+                  setIsActiveMenu={setIsActiveMenu}
+                />
+              }
+            />
+          </Routes>
         </ThemeProvider>
       </StoreProvider>
     </>
   );
 };
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ isActiveMenu: boolean }>`
 
   *{
     padding:0;
@@ -28,8 +54,14 @@ const GlobalStyle = createGlobalStyle`
 
   body{
     font-family: 'Poppins', sans-serif;
+    overflow: ${(props) => (props.isActiveMenu ? "hidden" : "auto")};
   }
 
-`;
+  a{
+    text-decoration:none;
+    color:black;
+  }
+  
+  `;
 
 export default App;

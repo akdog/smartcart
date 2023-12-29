@@ -1,7 +1,11 @@
 import { IoIosArrowForward } from "react-icons/io";
 import styled from "styled-components";
 
-const MenuItems = ({ item }) => {
+type Props = {
+  item: any;
+};
+
+const MenuItems = ({ item }: Props) => {
   return (
     <>
       <Main>
@@ -11,7 +15,6 @@ const MenuItems = ({ item }) => {
         </div>
         <IoIosArrowForward />
       </Main>
-      <hr />
     </>
   );
 };
@@ -23,7 +26,7 @@ const Main = styled.div`
 
   padding: 1rem;
 
-  background: white;
+  background: #ffffff;
 
   .single-item {
     display: flex;
