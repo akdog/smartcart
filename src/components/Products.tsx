@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
+
+//Import Components
 import Product from "./Product";
 
 //Import Icons
@@ -10,6 +11,12 @@ import { ProductContext } from "../context/store";
 
 const Products = () => {
   const data = useContext(ProductContext);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (id: number) => {
+    navigate(`/product/${id}`);
+  };
 
   if (data !== undefined) {
     return (
@@ -21,7 +28,11 @@ const Products = () => {
           </Link>
         </div>
         {data.map((item) => (
-          <Product item={item} key={item.id} />
+          <Product
+            item={item}
+            key={item.id}
+            onClick={() => handleNavigate(item.id)}
+          />
         ))}
       </Main>
     );

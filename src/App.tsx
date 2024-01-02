@@ -6,6 +6,7 @@ import { theme } from "./theme";
 //Import Pages
 import LandingPage from "./pages/LandingPage";
 import ViewAll from "./pages/ViewAll";
+import ProductPage from "./pages/ProductPage";
 
 //Import Context
 import StoreProvider from "./context/StoreProvider";
@@ -40,6 +41,7 @@ const App = () => {
                 />
               }
             />
+            <Route path="/product/:id" element={<ProductPage />} />
           </Routes>
         </ThemeProvider>
       </StoreProvider>

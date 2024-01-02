@@ -9,9 +9,10 @@ import { TProduct } from "../types/TProducts";
 
 type Props = {
   item: TProduct;
+  onClick: () => void;
 };
 
-const Product = ({ item }: Props) => {
+const Product = ({ item, onClick }: Props) => {
   const [isWishList, setIsWishlist] = useState<boolean>(false);
 
   const handleWish = () => {
@@ -19,7 +20,7 @@ const Product = ({ item }: Props) => {
   };
 
   return (
-    <Main>
+    <Main onClick={onClick}>
       <div className="product-container">
         {isWishList ? (
           <motion.div
