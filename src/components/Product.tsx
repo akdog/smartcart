@@ -20,7 +20,7 @@ const Product = ({ item, onClick }: Props) => {
   };
 
   return (
-    <Main onClick={onClick}>
+    <Main>
       <div className="product-container">
         {isWishList ? (
           <motion.div
@@ -49,7 +49,7 @@ const Product = ({ item, onClick }: Props) => {
             <CiHeart size="35" onClick={handleWish} />
           </motion.div>
         )}
-        <div className="img-container">
+        <div className="img-container" onClick={onClick}>
           <img src={item.image} />
         </div>
         <div className="text-container">

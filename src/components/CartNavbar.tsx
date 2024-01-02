@@ -41,7 +41,7 @@ const Main = styled.div`
 
   .button-container {
     button {
-      background: yellow;
+      background: ${(props) => props.theme.colors.SecondaryFirst};
 
       border: none;
       border-radius: 10px;

@@ -6,7 +6,16 @@ import { IoLocationSharp } from "react-icons/io5";
 import { CiBellOn } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 
-const Header = () => {
+type Props = {
+  isActiveCart: boolean;
+  setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Header = ({ isActiveCart, setIsActiveCart }: Props) => {
+  const handleCart = () => {
+    setIsActiveCart(!isActiveCart);
+  };
+
   return (
     <Main>
       <HeaderStyled>
@@ -19,7 +28,7 @@ const Header = () => {
             <CiBellOn size="30" />
           </div>
           <div className="background-icon">
-            <BsCart3 size="30" />
+            <BsCart3 size="30" onClick={handleCart} />
           </div>
         </div>
       </HeaderStyled>

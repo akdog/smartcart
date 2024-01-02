@@ -13,6 +13,7 @@ import StoreProvider from "./context/StoreProvider";
 
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
+  const [isActiveCart, setIsActiveCart] = useState<boolean>(false);
 
   const location = useLocation();
   const currentLocation = location.pathname;
@@ -29,6 +30,8 @@ const App = () => {
                 <LandingPage
                   isActiveMenu={isActiveMenu}
                   setIsActiveMenu={setIsActiveMenu}
+                  isActiveCart={isActiveCart}
+                  setIsActiveCart={setIsActiveCart}
                 />
               }
             />

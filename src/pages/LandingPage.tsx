@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { ProductContext } from "../context/store";
 
 //Import Components
 import Header from "../components/Header";
@@ -9,14 +9,21 @@ import Products from "../components/Products";
 import Navbar from "../components/Navbar";
 import Menu from "../components/Menu";
 import styled from "styled-components";
-import { ProductContext } from "../context/store";
+import CartMenu from "../components/CartMenu";
 
 type Props = {
   isActiveMenu: boolean;
   setIsActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  isActiveCart: boolean;
+  setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const LandingPage = ({ isActiveMenu, setIsActiveMenu }: Props) => {
+const LandingPage = ({
+  isActiveMenu,
+  setIsActiveMenu,
+  isActiveCart,
+  setIsActiveCart,
+}: Props) => {
   const data = useContext(ProductContext);
 
   if (data === undefined) {
@@ -25,7 +32,7 @@ const LandingPage = ({ isActiveMenu, setIsActiveMenu }: Props) => {
 
   return (
     <Main isActiveMenu={isActiveMenu}>
-      <Header />
+      <Header isActiveCart={isActiveCart} setIsActiveCart={setIsActiveCart} />
       <AllCategories />
       <SalesOffers />
       <Products />
@@ -35,6 +42,7 @@ const LandingPage = ({ isActiveMenu, setIsActiveMenu }: Props) => {
       ) : (
         ""
       )}
+      {isActiveCart ? <CartMenu /> : ""}
     </Main>
   );
 };
