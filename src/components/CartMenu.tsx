@@ -1,14 +1,140 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
 
-const CartMenu = () => {
+import { TProduct } from "../types/TProducts";
+
+import { FaMinus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
+import { CiCircleRemove } from "react-icons/ci";
+import { useProductSource } from "../hooks/useProductSource";
+
+type Props = {
+  isActiveCart: boolean;
+  setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const CartMenu = ({ isActiveCart, setIsActiveCart }: Props) => {
+  const [cartProduct, setCartProduct] = useState<TProduct | undefined>(
+    undefined
+  );
+
+  const state = useProductSource();
+  console.log(state.state.added_cart);
+
+  useEffect(() => {
+    if (state.state.data !== undefined) {
+      const firstProduct = state.state.data.find(
+        (item) => item.id === state.state.cart_id
+      );
+
+      setCartProduct(firstProduct);
+    }
+  }, [state.state.data, state.state.cart_id]);
+
+  const handleCart = () => {
+    setIsActiveCart(false);
+  };
+
   return (
-    <div>
+    <Main>
       <div className="cart-header">
         <h3>Cart</h3>
-        <p>X</p>
+        <CiCircleRemove size="30" onClick={handleCart} />
       </div>
-    </div>
+      <div className="cart-items">
+        <div className="img-container">
+          <img src={cartProduct?.image} />
+        </div>
+        <div className="cart-items-info">
+          <p>Name</p>
+          <div className="cart-increment">
+            <FaMinus />
+            <p>1</p>
+            <FaPlus />
+          </div>
+        </div>
+        <p>{cartProduct?.price}$</p>
+      </div>
+      <div className="cart-total">
+        <div className="total">
+          <p>Cart Total</p>
+          <p>{cartProduct?.price}$</p>
+        </div>
+        <button>Checkout</button>
+      </div>
+    </Main>
   );
 };
+
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background: white;
+
+  padding: 1rem;
+
+  position: sticky;
+  bottom: 6%;
+
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .cart-items {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100%;
+
+    margin-top: 1.5rem;
+
+    .img-container {
+      width: 15%;
+      img {
+        width: 100%;
+      }
+    }
+
+    .cart-increment {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart-items-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    button {
+      width: 65%;
+      padding: 1rem 0rem;
+
+      border: none;
+      border-radius: 10px;
+
+      background: ${(props) => props.theme.colors.SecondaryFirst};
+    }
+  }
+`;
 
 export default CartMenu;

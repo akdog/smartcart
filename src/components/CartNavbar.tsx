@@ -1,13 +1,13 @@
-import React from "react";
 import styled from "styled-components";
 
 import { TProduct } from "../types/TProducts";
 
 type Props = {
   single_product: TProduct;
+  handleAddToCart: () => void;
 };
 
-const CartNavbar = ({ single_product }: Props) => {
+const CartNavbar = ({ single_product, handleAddToCart }: Props) => {
   return (
     <Main>
       <div className="price-container">
@@ -15,7 +15,7 @@ const CartNavbar = ({ single_product }: Props) => {
         <h3>{single_product.price}$</h3>
       </div>
       <div className="button-container">
-        <button>Add to Cart</button>
+        <button onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </Main>
   );

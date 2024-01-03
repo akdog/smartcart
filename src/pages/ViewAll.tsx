@@ -6,14 +6,20 @@ import Menu from "../components/Menu";
 
 type Props = {
   isActiveMenu: boolean;
-
   setIsActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  isActiveCart: boolean;
+  setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ViewAll = ({ isActiveMenu, setIsActiveMenu }: Props) => {
+const ViewAll = ({
+  isActiveMenu,
+  setIsActiveMenu,
+  isActiveCart,
+  setIsActiveCart,
+}: Props) => {
   return (
     <div>
-      <Header />
+      <Header isActiveCart={isActiveCart} setIsActiveCart={setIsActiveCart} />
       <Products />
       <Navbar setIsActiveMenu={setIsActiveMenu} />
       {isActiveMenu ? (

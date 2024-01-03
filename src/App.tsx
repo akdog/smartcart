@@ -41,6 +41,8 @@ const App = () => {
                 <ViewAll
                   isActiveMenu={isActiveMenu}
                   setIsActiveMenu={setIsActiveMenu}
+                  isActiveCart={isActiveCart}
+                  setIsActiveCart={setIsActiveCart}
                 />
               }
             />

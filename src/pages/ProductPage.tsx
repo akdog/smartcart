@@ -17,8 +17,13 @@ import SinlgeProductInfo from "../components/SinlgeProductInfo";
 import SinlgeProductDes from "../components/SinlgeProductDes";
 import CartNavbar from "../components/CartNavbar";
 
+//Import Reducer
+import { ACTIONS } from "../types/TReducer";
+import { useProductSource } from "../hooks/useProductSource";
+
 const ProductPage = () => {
   const data: TProduct[] | undefined = useContext(ProductContext);
+  const { state, dispatch } = useProductSource();
 
   const { id } = useParams();
 
@@ -32,6 +37,13 @@ const ProductPage = () => {
   if (!single_product) {
     return <div>Product Loading...</div>;
   }
+
+  const handleAddToCart = () => {
+    const confirmedID = single_product.id;
+
+    dispatch({ type: ACTIONS.SET_ADDED_CART, payload: true });
+    dispatch({ type: ACTIONS.SET_CART_ID, payload: confirmedID });
+  };
 
   return (
     <Main>
@@ -48,7 +60,10 @@ const ProductPage = () => {
         <SinlgeProductInfo single_product={single_product} />
         <SinlgeProductDes single_product={single_product} />
       </div>
-      <CartNavbar single_product={single_product} />
+      <CartNavbar
+        single_product={single_product}
+        handleAddToCart={handleAddToCart}
+      />
     </Main>
   );
 };

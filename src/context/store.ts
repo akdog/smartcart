@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import { Product } from "../types/TProducts";
+import { TProduct } from "../types/TProducts";
 
-export const ProductContext = createContext<Product[] | undefined>(undefined);
+export const ProductContext = createContext<TProduct[] | undefined>(undefined);

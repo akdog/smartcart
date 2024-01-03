@@ -42,7 +42,14 @@ const LandingPage = ({
       ) : (
         ""
       )}
-      {isActiveCart ? <CartMenu /> : ""}
+      {isActiveCart ? (
+        <CartMenu
+          isActiveCart={isActiveCart}
+          setIsActiveCart={setIsActiveCart}
+        />
+      ) : (
+        ""
+      )}
     </Main>
   );
 };
