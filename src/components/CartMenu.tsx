@@ -1,36 +1,17 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { TProduct } from "../types/TProducts";
 
-import { FaMinus } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
 import { CiCircleRemove } from "react-icons/ci";
-import { useProductSource } from "../hooks/useProductSource";
+import CartItems from "./CartItems";
 
 type Props = {
   isActiveCart: boolean;
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
+  addedToCart: TProduct[];
 };
 
-const CartMenu = ({ isActiveCart, setIsActiveCart }: Props) => {
-  const [cartProduct, setCartProduct] = useState<TProduct | undefined>(
-    undefined
-  );
-
-  const state = useProductSource();
-  console.log(state.state.added_cart);
-
-  useEffect(() => {
-    if (state.state.data !== undefined) {
-      const firstProduct = state.state.data.find(
-        (item) => item.id === state.state.cart_id
-      );
-
-      setCartProduct(firstProduct);
-    }
-  }, [state.state.data, state.state.cart_id]);
-
+const CartMenu = ({ isActiveCart, setIsActiveCart, addedToCart }: Props) => {
   const handleCart = () => {
     setIsActiveCart(false);
   };
@@ -41,27 +22,9 @@ const CartMenu = ({ isActiveCart, setIsActiveCart }: Props) => {
         <h3>Cart</h3>
         <CiCircleRemove size="30" onClick={handleCart} />
       </div>
-      <div className="cart-items">
-        <div className="img-container">
-          <img src={cartProduct?.image} />
-        </div>
-        <div className="cart-items-info">
-          <p>Name</p>
-          <div className="cart-increment">
-            <FaMinus />
-            <p>1</p>
-            <FaPlus />
-          </div>
-        </div>
-        <p>{cartProduct?.price}$</p>
-      </div>
-      <div className="cart-total">
-        <div className="total">
-          <p>Cart Total</p>
-          <p>{cartProduct?.price}$</p>
-        </div>
-        <button>Checkout</button>
-      </div>
+      {addedToCart.map((item) => (
+        <CartItems item={item} key={item.id} addedToCart={addedToCart} />
+      ))}
     </Main>
   );
 };

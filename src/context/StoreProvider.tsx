@@ -1,17 +1,22 @@
+import { useState, useEffect } from "react";
 import { ProductContext } from "./store";
-import { useProductSource } from "../hooks/useProductSource";
+import { TProduct } from "../types/TProducts";
 
 type ChildrenType = {
   children: React.ReactNode;
 };
 
 const StoreProvider = ({ children }: ChildrenType) => {
-  const state = useProductSource();
+  const [data, setData] = useState<TProduct[] | undefined>(undefined);
+
+  useEffect(() => {
+    fetch(`https://fakestoreapi.com/products`)
+      .then((res) => res.json())
+      .then((json) => setData(json));
+  }, []);
 
   return (
-    <ProductContext.Provider value={state.state.data}>
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={data}>{children}</ProductContext.Provider>
   );
 };
 

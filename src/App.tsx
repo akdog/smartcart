@@ -1,7 +1,10 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
+
+//Import Types
+import { TProduct } from "./types/TProducts";
 
 //Import Pages
 import LandingPage from "./pages/LandingPage";
@@ -14,13 +17,11 @@ import StoreProvider from "./context/StoreProvider";
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
   const [isActiveCart, setIsActiveCart] = useState<boolean>(false);
-
-  const location = useLocation();
-  const currentLocation = location.pathname;
+  const [addedToCart, setAddedToCart] = useState<TProduct[]>([]);
 
   return (
     <>
-      <StoreProvider currentLocation={currentLocation}>
+      <StoreProvider>
         <GlobalStyle isActiveMenu={isActiveMenu} />
         <ThemeProvider theme={theme}>
           <Routes>
@@ -32,6 +33,7 @@ const App = () => {
                   setIsActiveMenu={setIsActiveMenu}
                   isActiveCart={isActiveCart}
                   setIsActiveCart={setIsActiveCart}
+                  addedToCart={addedToCart}
                 />
               }
             />
@@ -46,7 +48,15 @@ const App = () => {
                 />
               }
             />
-            <Route path="/product/:id" element={<ProductPage />} />
+            <Route
+              path="/product/:id"
+              element={
+                <ProductPage
+                  addedToCart={addedToCart}
+                  setAddedToCart={setAddedToCart}
+                />
+              }
+            />
           </Routes>
         </ThemeProvider>
       </StoreProvider>

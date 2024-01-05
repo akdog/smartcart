@@ -10,12 +10,14 @@ import Navbar from "../components/Navbar";
 import Menu from "../components/Menu";
 import styled from "styled-components";
 import CartMenu from "../components/CartMenu";
+import { TProduct } from "../types/TProducts";
 
 type Props = {
   isActiveMenu: boolean;
   setIsActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
   isActiveCart: boolean;
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
+  addedToCart: TProduct[];
 };
 
 const LandingPage = ({
@@ -23,6 +25,7 @@ const LandingPage = ({
   setIsActiveMenu,
   isActiveCart,
   setIsActiveCart,
+  addedToCart,
 }: Props) => {
   const data = useContext(ProductContext);
 
@@ -46,6 +49,7 @@ const LandingPage = ({
         <CartMenu
           isActiveCart={isActiveCart}
           setIsActiveCart={setIsActiveCart}
+          addedToCart={addedToCart}
         />
       ) : (
         ""

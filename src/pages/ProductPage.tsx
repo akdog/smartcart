@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 
@@ -17,13 +19,13 @@ import SinlgeProductInfo from "../components/SinlgeProductInfo";
 import SinlgeProductDes from "../components/SinlgeProductDes";
 import CartNavbar from "../components/CartNavbar";
 
-//Import Reducer
-import { ACTIONS } from "../types/TReducer";
-import { useProductSource } from "../hooks/useProductSource";
+type Props = {
+  addedToCart: TProduct[];
+  setAddedToCart: React.Dispatch<React.SetStateAction<TProduct[]>>;
+};
 
-const ProductPage = () => {
+const ProductPage = ({ addedToCart, setAddedToCart }: Props) => {
   const data: TProduct[] | undefined = useContext(ProductContext);
-  const { state, dispatch } = useProductSource();
 
   const { id } = useParams();
 
@@ -39,10 +41,7 @@ const ProductPage = () => {
   }
 
   const handleAddToCart = () => {
-    const confirmedID = single_product.id;
-
-    dispatch({ type: ACTIONS.SET_ADDED_CART, payload: true });
-    dispatch({ type: ACTIONS.SET_CART_ID, payload: confirmedID });
+    setAddedToCart([...addedToCart, single_product]);
   };
 
   return (
