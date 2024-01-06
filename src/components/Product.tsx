@@ -9,14 +9,22 @@ import { TProduct } from "../types/TProducts";
 
 type Props = {
   item: TProduct;
-  onClick: () => void;
+  onClick?: () => void;
+  setAddedToWishlist: React.Dispatch<React.SetStateAction<TProduct[]>>;
+  addedToWishlist: TProduct[];
 };
 
-const Product = ({ item, onClick }: Props) => {
+const Product = ({
+  item,
+  onClick,
+  setAddedToWishlist,
+  addedToWishlist,
+}: Props) => {
   const [isWishList, setIsWishlist] = useState<boolean>(false);
 
   const handleWish = () => {
     setIsWishlist(!isWishList);
+    setAddedToWishlist([...addedToWishlist, item]);
   };
 
   return (
@@ -69,6 +77,8 @@ const Main = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    width: 90vw;
 
     .text-container {
       display: flex;

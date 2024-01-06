@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import { TProduct } from "../types/TProducts";
@@ -12,9 +13,19 @@ type Props = {
 };
 
 const CartMenu = ({ isActiveCart, setIsActiveCart, addedToCart }: Props) => {
+  const [incValue, setIncValue] = useState<number>(0);
+  const [incNumber, setIncNumber] = useState<number>(1);
+
   const handleCart = () => {
     setIsActiveCart(false);
   };
+
+  const allPrices = addedToCart.map((item) => item.price);
+
+  const sumPrices = allPrices.reduce(
+    (acc, currentValue) => acc + currentValue,
+    0
+  );
 
   return (
     <Main>
@@ -23,8 +34,22 @@ const CartMenu = ({ isActiveCart, setIsActiveCart, addedToCart }: Props) => {
         <CiCircleRemove size="30" onClick={handleCart} />
       </div>
       {addedToCart.map((item) => (
-        <CartItems item={item} key={item.id} addedToCart={addedToCart} />
+        <CartItems
+          item={item}
+          key={item.id}
+          incValue={incValue}
+          setIncValue={setIncValue}
+          incNumber={incNumber}
+          setIncNumber={setIncNumber}
+        />
       ))}
+      <div className="cart-total">
+        <div className="total">
+          <p>Cart Total</p>
+          <p>{sumPrices}</p>
+        </div>
+        <button>Checkout</button>
+      </div>
     </Main>
   );
 };

@@ -13,11 +13,15 @@ import ProductPage from "./pages/ProductPage";
 
 //Import Context
 import StoreProvider from "./context/StoreProvider";
+import WishPage from "./pages/WishPage";
 
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
   const [isActiveCart, setIsActiveCart] = useState<boolean>(false);
   const [addedToCart, setAddedToCart] = useState<TProduct[]>([]);
+  const [addedToWishlist, setAddedToWishlist] = useState<TProduct[]>([]);
+
+  console.log(addedToWishlist);
 
   return (
     <>
@@ -54,6 +58,17 @@ const App = () => {
                 <ProductPage
                   addedToCart={addedToCart}
                   setAddedToCart={setAddedToCart}
+                />
+              }
+            />
+            <Route
+              path="/wishlist"
+              element={
+                <WishPage
+                  setIsActiveMenu={setIsActiveMenu}
+                  isActiveMenu={isActiveMenu}
+                  addedToWishlist={addedToWishlist}
+                  setAddedToWishlist={setAddedToWishlist}
                 />
               }
             />

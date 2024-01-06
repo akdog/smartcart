@@ -43,10 +43,21 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
             )}
           </div>
         </Link>
-        <div className="single-icon">
-          <FaRegHeart size="25" />
-          <p>Wishlist</p>
-        </div>
+        <Link to="/wishlist">
+          <div className="single-icon">
+            {currentLocation === "/wishlist" ? (
+              <>
+                <FaRegHeart size="25" color="#4BA4DF" />
+                <p style={{ color: "#4BA4DF" }}>Wishlist</p>
+              </>
+            ) : (
+              <>
+                <FaRegHeart size="25" />
+                <p>Wishlist</p>
+              </>
+            )}
+          </div>
+        </Link>
         <div className="single-icon">
           <FaRegUser size="25" />
           <p>Profile</p>

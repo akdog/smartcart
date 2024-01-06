@@ -5,12 +5,19 @@ import { TProduct } from "../types/TProducts";
 
 type Props = {
   item: TProduct;
-  addedToCart: TProduct[];
+  incValue: number;
+  setIncValue: React.Dispatch<React.SetStateAction<number>>;
+  incNumber: number;
+  setIncNumber: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const CartItems = ({ item, addedToCart }: Props) => {
-  const allPrices = addedToCart.map((item) => item.price);
-
+const CartItems = ({
+  item,
+  incValue,
+  setIncValue,
+  incNumber,
+  setIncNumber,
+}: Props) => {
   return (
     <>
       <div className="cart-items">
@@ -21,18 +28,11 @@ const CartItems = ({ item, addedToCart }: Props) => {
           <p>Name</p>
           <div className="cart-increment">
             <FaMinus />
-            <p>1</p>
+            <p>0</p>
             <FaPlus />
           </div>
         </div>
-        <p>{item?.price}$</p>
-      </div>
-      <div className="cart-total">
-        <div className="total">
-          <p>Cart Total</p>
-          <p>{item?.price}$</p>
-        </div>
-        <button>Checkout</button>
+        <p>{incValue}$</p>
       </div>
     </>
   );
