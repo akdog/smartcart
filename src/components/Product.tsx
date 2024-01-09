@@ -27,6 +27,11 @@ const Product = ({
     setAddedToWishlist([...addedToWishlist, item]);
   };
 
+  const handleWishDelete = (id: number) => {
+    setIsWishlist(!isWishList);
+    setAddedToWishlist(addedToWishlist.filter((item) => item.id !== id));
+  };
+
   return (
     <Main>
       <div className="product-container">
@@ -41,7 +46,11 @@ const Product = ({
               damping: 20,
             }}
           >
-            <CiHeart size="35" color="red" onClick={handleWish} />
+            <CiHeart
+              size="35"
+              color="red"
+              onClick={() => handleWishDelete(item.id)}
+            />
           </motion.div>
         ) : (
           <motion.div

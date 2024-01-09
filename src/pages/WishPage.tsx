@@ -6,6 +6,12 @@ import Menu from "../components/Menu";
 import FavoriteItems from "../components/FavoriteItems";
 import CreateList from "../components/CreateList";
 import TrendingProducts from "../components/TrendingProducts";
+
+//Import Icons
+import { CiBellOn } from "react-icons/ci";
+import { BsCart3 } from "react-icons/bs";
+
+//Import Types
 import { TProduct } from "../types/TProducts";
 
 type Props = {
@@ -25,7 +31,10 @@ const WishPage = ({
     <Main>
       <div className="header">
         <h1>WishList</h1>
-        <h1>Icon</h1>
+        <div className="icon-container">
+          <CiBellOn size="35" />
+          <BsCart3 size="30" />
+        </div>
       </div>
       {addedToWishlist.length > 0 ? (
         <FavoriteItems addedToWishlist={addedToWishlist} />
@@ -53,6 +62,13 @@ const Main = styled.div`
     align-items: center;
 
     padding: 1rem;
+
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
   }
 `;
 

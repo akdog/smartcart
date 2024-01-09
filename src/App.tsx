@@ -21,8 +21,6 @@ const App = () => {
   const [addedToCart, setAddedToCart] = useState<TProduct[]>([]);
   const [addedToWishlist, setAddedToWishlist] = useState<TProduct[]>([]);
 
-  console.log(addedToWishlist);
-
   return (
     <>
       <StoreProvider>
@@ -38,6 +36,8 @@ const App = () => {
                   isActiveCart={isActiveCart}
                   setIsActiveCart={setIsActiveCart}
                   addedToCart={addedToCart}
+                  setAddedToWishlist={setAddedToWishlist}
+                  addedToWishlist={addedToWishlist}
                 />
               }
             />

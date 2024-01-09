@@ -18,6 +18,7 @@ import { BsCart3 } from "react-icons/bs";
 import SinlgeProductInfo from "../components/SinlgeProductInfo";
 import SinlgeProductDes from "../components/SinlgeProductDes";
 import CartNavbar from "../components/CartNavbar";
+import TrendingProducts from "../components/TrendingProducts";
 
 type Props = {
   addedToCart: TProduct[];

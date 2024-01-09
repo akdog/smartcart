@@ -1,3 +1,4 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProductContext } from "../context/store";
 
@@ -13,17 +14,24 @@ type Props = {
 const TrendingProducts = ({ setAddedToWishlist, addedToWishlist }: Props) => {
   const data = useContext(ProductContext);
 
+  const navigate = useNavigate();
+
+  const handleNavigate = (id: number) => {
+    navigate(`/product/${id}`);
+  };
+
   return (
     <Main>
       <div className="trending-header">
         <h1>trending</h1>
-        <p>View All</p>
+        <Link to="/all">View All</Link>
       </div>
       <div className="trending-items">
         {data?.map((item) => (
           <Product
             item={item}
             key={item.id}
+            onClick={() => handleNavigate(item.id)}
             setAddedToWishlist={setAddedToWishlist}
             addedToWishlist={addedToWishlist}
           />

@@ -3,20 +3,20 @@ import { TProduct } from "../types/TProducts";
 
 type Props = {
   item: TProduct;
+  onClick: () => void;
 };
 
-const FavoriteItem = ({ item }: Props) => {
+const FavoriteItem = ({ item, onClick }: Props) => {
   return (
     <Main>
       <div className="img-container">
-        <img src={item.image} alt="" />
+        <img src={item.image} onClick={onClick} />
       </div>
       <div className="text-container">
         <div className="text-header">
           <h4>{item.title}</h4>
-          <h4>heart</h4>
         </div>
-        <h4>{item.price}</h4>
+        <h4>${item.price}</h4>
         <button>Add To Cart</button>
       </div>
     </Main>

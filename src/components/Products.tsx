@@ -9,7 +9,14 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useContext } from "react";
 import { ProductContext } from "../context/store";
 
-const Products = () => {
+import { TProduct } from "../types/TProducts";
+
+type Props = {
+  setAddedToWishlist: React.Dispatch<React.SetStateAction<TProduct[]>>;
+  addedToWishlist: TProduct[];
+};
+
+const Products = ({ setAddedToWishlist, addedToWishlist }: Props) => {
   const data = useContext(ProductContext);
 
   const navigate = useNavigate();
@@ -32,6 +39,8 @@ const Products = () => {
             item={item}
             key={item.id}
             onClick={() => handleNavigate(item.id)}
+            setAddedToWishlist={setAddedToWishlist}
+            addedToWishlist={addedToWishlist}
           />
         ))}
       </Main>

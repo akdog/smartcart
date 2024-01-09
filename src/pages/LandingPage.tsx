@@ -18,6 +18,8 @@ type Props = {
   isActiveCart: boolean;
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
   addedToCart: TProduct[];
+  setAddedToWishlist: React.Dispatch<React.SetStateAction<TProduct[]>>;
+  addedToWishlist: TProduct[];
 };
 
 const LandingPage = ({
@@ -26,6 +28,8 @@ const LandingPage = ({
   isActiveCart,
   setIsActiveCart,
   addedToCart,
+  setAddedToWishlist,
+  addedToWishlist,
 }: Props) => {
   const data = useContext(ProductContext);
 
@@ -38,7 +42,10 @@ const LandingPage = ({
       <Header isActiveCart={isActiveCart} setIsActiveCart={setIsActiveCart} />
       <AllCategories />
       <SalesOffers />
-      <Products />
+      <Products
+        setAddedToWishlist={setAddedToWishlist}
+        addedToWishlist={addedToWishlist}
+      />
       <Navbar setIsActiveMenu={setIsActiveMenu} />
       {isActiveMenu ? (
         <Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} />
