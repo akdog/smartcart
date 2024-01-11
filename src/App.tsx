@@ -35,6 +35,7 @@ const App = () => {
                   setIsActiveMenu={setIsActiveMenu}
                   isActiveCart={isActiveCart}
                   setIsActiveCart={setIsActiveCart}
+                  setAddedToCart={setAddedToCart}
                   addedToCart={addedToCart}
                   setAddedToWishlist={setAddedToWishlist}
                   addedToWishlist={addedToWishlist}
@@ -49,6 +50,8 @@ const App = () => {
                   setIsActiveMenu={setIsActiveMenu}
                   isActiveCart={isActiveCart}
                   setIsActiveCart={setIsActiveCart}
+                  setAddedToWishlist={setAddedToWishlist}
+                  addedToWishlist={addedToWishlist}
                 />
               }
             />

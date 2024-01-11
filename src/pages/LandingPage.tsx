@@ -20,6 +20,7 @@ type Props = {
   addedToCart: TProduct[];
   setAddedToWishlist: React.Dispatch<React.SetStateAction<TProduct[]>>;
   addedToWishlist: TProduct[];
+  setAddedToCart: React.Dispatch<React.SetStateAction<TProduct[]>>;
 };
 
 const LandingPage = ({
@@ -30,6 +31,7 @@ const LandingPage = ({
   addedToCart,
   setAddedToWishlist,
   addedToWishlist,
+  setAddedToCart,
 }: Props) => {
   const data = useContext(ProductContext);
 
@@ -39,7 +41,11 @@ const LandingPage = ({
 
   return (
     <Main isActiveMenu={isActiveMenu}>
-      <Header isActiveCart={isActiveCart} setIsActiveCart={setIsActiveCart} />
+      <Header
+        isActiveCart={isActiveCart}
+        setIsActiveCart={setIsActiveCart}
+        addedToCart={addedToCart}
+      />
       <AllCategories />
       <SalesOffers />
       <Products
@@ -57,6 +63,7 @@ const LandingPage = ({
           isActiveCart={isActiveCart}
           setIsActiveCart={setIsActiveCart}
           addedToCart={addedToCart}
+          setAddedToCart={setAddedToCart}
         />
       ) : (
         ""

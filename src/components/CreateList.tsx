@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import shoes from "../assets/shoes.png";
+import { useNavigate } from "react-router-dom";
 
 const CreateList = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/all");
+  };
+
   return (
-    <Main>
+    <Main onClick={handleNavigate}>
       <div className="img-container">
         <img src={shoes} />
       </div>

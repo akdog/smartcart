@@ -1,3 +1,5 @@
+import { motion, useMotionValue, useTransform } from "framer-motion";
+
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 

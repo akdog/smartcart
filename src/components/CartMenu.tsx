@@ -10,9 +10,15 @@ type Props = {
   isActiveCart: boolean;
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
   addedToCart: TProduct[];
+  setAddedToCart: React.Dispatch<React.SetStateAction<TProduct[]>>;
 };
 
-const CartMenu = ({ isActiveCart, setIsActiveCart, addedToCart }: Props) => {
+const CartMenu = ({
+  isActiveCart,
+  setIsActiveCart,
+  addedToCart,
+  setAddedToCart,
+}: Props) => {
   const [incValue, setIncValue] = useState<number>(0);
   const [incNumber, setIncNumber] = useState<number>(1);
 
@@ -26,6 +32,14 @@ const CartMenu = ({ isActiveCart, setIsActiveCart, addedToCart }: Props) => {
     (acc, currentValue) => acc + currentValue,
     0
   );
+
+  if (addedToCart.length >= 0) {
+    return (
+      <Main>
+        <h3>No Cart Items found...</h3>
+      </Main>
+    );
+  }
 
   return (
     <Main>

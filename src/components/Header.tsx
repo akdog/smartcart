@@ -6,12 +6,16 @@ import { IoLocationSharp } from "react-icons/io5";
 import { CiBellOn } from "react-icons/ci";
 import { BsCart3 } from "react-icons/bs";
 
+//Import Types
+import { TProduct } from "../types/TProducts";
+
 type Props = {
   isActiveCart: boolean;
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
+  addedToCart: TProduct[];
 };
 
-const Header = ({ isActiveCart, setIsActiveCart }: Props) => {
+const Header = ({ isActiveCart, setIsActiveCart, addedToCart }: Props) => {
   const handleCart = () => {
     setIsActiveCart(!isActiveCart);
   };
@@ -28,7 +32,14 @@ const Header = ({ isActiveCart, setIsActiveCart }: Props) => {
             <CiBellOn size="30" />
           </div>
           <div className="background-icon">
-            <BsCart3 size="30" onClick={handleCart} />
+            {addedToCart.length <= 0 ? (
+              <BsCart3 size="30" onClick={handleCart} />
+            ) : (
+              <div className="active-item-cart">
+                <BsCart3 size="30" onClick={handleCart} />
+                <p>{addedToCart.length}</p>
+              </div>
+            )}
           </div>
         </div>
       </HeaderStyled>
@@ -71,6 +82,25 @@ const HeaderStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .active-item-cart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      p {
+        position: absolute;
+        bottom: 60%;
+        left: 60%;
+
+        background: #ea2a2a;
+        padding: 0.1rem 0.8rem;
+
+        border-radius: 15px;
+      }
+    }
   }
 `;
 

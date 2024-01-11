@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 //Import Context
 import { useContext } from "react";
@@ -13,12 +14,12 @@ import { TProduct } from "../types/TProducts";
 //Import Icons
 import { IoIosArrowBack } from "react-icons/io";
 import { BsCart3 } from "react-icons/bs";
+import { FaCheck } from "react-icons/fa";
 
 //Import Components
 import SinlgeProductInfo from "../components/SinlgeProductInfo";
 import SinlgeProductDes from "../components/SinlgeProductDes";
 import CartNavbar from "../components/CartNavbar";
-import TrendingProducts from "../components/TrendingProducts";
 
 type Props = {
   addedToCart: TProduct[];
@@ -27,6 +28,7 @@ type Props = {
 
 const ProductPage = ({ addedToCart, setAddedToCart }: Props) => {
   const data: TProduct[] | undefined = useContext(ProductContext);
+  const [isToCart, setIsToCart] = useState<boolean>(false);
 
   const { id } = useParams();
 
@@ -43,15 +45,35 @@ const ProductPage = ({ addedToCart, setAddedToCart }: Props) => {
 
   const handleAddToCart = () => {
     setAddedToCart([...addedToCart, single_product]);
+    setIsToCart(true);
+    setTimeout(() => {
+      setIsToCart(false);
+    }, 1000);
   };
 
   return (
     <Main>
       <div className="header">
-        <Link to="/">
-          <IoIosArrowBack size={30} />
-        </Link>
-        <BsCart3 size={30} />
+        {isToCart ? (
+          <motion.div
+            className="is-to-cart"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <FaCheck size="30" color="#9dd536" />
+            <div className="is-cart-text">
+              <h3>Item Added To Your Cart</h3>
+            </div>
+          </motion.div>
+        ) : (
+          <>
+            <Link to="/">
+              <IoIosArrowBack size={30} />
+            </Link>
+            <BsCart3 size={30} />
+          </>
+        )}
       </div>
       <div className="img-container">
         <img src={single_product.image} />
@@ -84,6 +106,27 @@ const Main = styled.div`
     width: 100%;
 
     padding: 1rem;
+
+    .is-to-cart {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: #e0e0e0;
+
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+      padding: 1rem;
+
+      border-radius: 10px;
+
+      width: 100%;
+
+      .is-cart-text {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
   }
   .img-container {
     img {
