@@ -59,6 +59,11 @@ const StyledMenu = styled(motion.div)`
   display: flex;
   flex-direction: column;
 
+  @media (max-width: 430px) {
+    position: absolute;
+    top: 1%;
+  }
+
   .header {
     display: flex;
     background: ${(props) => props.theme.colors.primaryFirst};

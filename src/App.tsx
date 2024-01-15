@@ -19,7 +19,6 @@ import ProfilPage from "./pages/ProfilPage";
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
   const [isActiveCart, setIsActiveCart] = useState<boolean>(false);
-
   const [addedToCart, setAddedToCart] = useState<TProduct[]>([]);
   const [addedToWishlist, setAddedToWishlist] = useState<TProduct[]>([]);
 
