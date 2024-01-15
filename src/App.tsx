@@ -15,6 +15,7 @@ import WishPage from "./pages/WishPage";
 //Import Context
 import StoreProvider from "./context/StoreProvider";
 import ProfilPage from "./pages/ProfilPage";
+import MobileMessage from "./components/MobileMessage";
 
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
@@ -27,6 +28,7 @@ const App = () => {
       <StoreProvider>
         <GlobalStyle isActiveMenu={isActiveMenu} />
         <ThemeProvider theme={theme}>
+          <MobileMessage />
           <Routes>
             <Route
               path="/"
