@@ -23,7 +23,7 @@ const TrendingProducts = ({ setAddedToWishlist, addedToWishlist }: Props) => {
   return (
     <Main>
       <div className="trending-header">
-        <h1>trending</h1>
+        <h1>Trending</h1>
         <Link to="/all">View All</Link>
       </div>
       <div className="trending-items">

@@ -34,7 +34,7 @@ const ProfilPage = ({
   return (
     <Main>
       <div className="header">
-        <h2>Profile</h2>
+        <h1>Profile</h1>
         <IconContainer
           addedToCart={addedToCart}
           setIsActiveCart={setIsActiveCart}
@@ -99,22 +99,6 @@ const Main = styled.div`
         }
       }
     }
-  }
-
-  .profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 0.2rem;
-
-    border: 1px solid black;
-    border-radius: 10px;
-
-    padding: 2rem;
-
-    width: 95%;
-    margin: 0 auto;
   }
 `;
 

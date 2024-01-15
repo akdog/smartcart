@@ -14,6 +14,7 @@ type Props = {
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
   setAddedToWishlist: React.Dispatch<React.SetStateAction<TProduct[]>>;
   addedToWishlist: TProduct[];
+  addedToCart: TProduct[];
 };
 
 const ViewAll = ({
@@ -23,10 +24,15 @@ const ViewAll = ({
   setIsActiveCart,
   addedToWishlist,
   setAddedToWishlist,
+  addedToCart,
 }: Props) => {
   return (
     <div>
-      <Header isActiveCart={isActiveCart} setIsActiveCart={setIsActiveCart} />
+      <Header
+        isActiveCart={isActiveCart}
+        setIsActiveCart={setIsActiveCart}
+        addedToCart={addedToCart}
+      />
       <Products
         setAddedToWishlist={setAddedToWishlist}
         addedToWishlist={addedToWishlist}

@@ -20,7 +20,7 @@ const CreateList = ({ text, topic }: Props) => {
         <img src={shoes} />
       </div>
       <h3>{text}</h3>
-      <button>+ {topic}</button>
+      <button> {topic} +</button>
     </Main>
   );
 };

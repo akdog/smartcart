@@ -54,6 +54,7 @@ const App = () => {
                   setIsActiveCart={setIsActiveCart}
                   setAddedToWishlist={setAddedToWishlist}
                   addedToWishlist={addedToWishlist}
+                  addedToCart={addedToCart}
                 />
               }
             />
@@ -117,6 +118,18 @@ const GlobalStyle = createGlobalStyle<{ isActiveMenu: boolean }>`
   a{
     text-decoration:none;
     color:black;
+  }
+
+  h1{
+    font-weight:500;
+  }
+
+  h2{
+    font-weight:400;
+  }
+
+  h3{
+    font-weight:300;
   }
   
   `;
