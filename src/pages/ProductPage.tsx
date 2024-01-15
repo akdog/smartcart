@@ -20,6 +20,7 @@ import { FaCheck } from "react-icons/fa";
 import SinlgeProductInfo from "../components/SinlgeProductInfo";
 import SinlgeProductDes from "../components/SinlgeProductDes";
 import CartNavbar from "../components/CartNavbar";
+import CartMenu from "../components/CartMenu";
 
 type Props = {
   addedToCart: TProduct[];
@@ -46,6 +47,7 @@ const ProductPage = ({ addedToCart, setAddedToCart }: Props) => {
   const handleAddToCart = () => {
     setAddedToCart([...addedToCart, single_product]);
     setIsToCart(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
       setIsToCart(false);
     }, 1000);
@@ -71,7 +73,14 @@ const ProductPage = ({ addedToCart, setAddedToCart }: Props) => {
             <Link to="/">
               <IoIosArrowBack size={30} />
             </Link>
-            <BsCart3 size={30} />
+            {addedToCart.length <= 0 ? (
+              <BsCart3 size="30" />
+            ) : (
+              <div className="active-item-cart">
+                <BsCart3 size="30" />
+                <p>{addedToCart.length}</p>
+              </div>
+            )}
           </>
         )}
       </div>
@@ -106,6 +115,25 @@ const Main = styled.div`
     width: 100%;
 
     padding: 1rem;
+
+    .active-item-cart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      p {
+        position: absolute;
+        bottom: 60%;
+        left: 60%;
+
+        background: #ea2a2a;
+        padding: 0.1rem 0.8rem;
+
+        border-radius: 15px;
+      }
+    }
 
     .is-to-cart {
       display: flex;

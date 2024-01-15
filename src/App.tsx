@@ -10,14 +10,16 @@ import { TProduct } from "./types/TProducts";
 import LandingPage from "./pages/LandingPage";
 import ViewAll from "./pages/ViewAll";
 import ProductPage from "./pages/ProductPage";
+import WishPage from "./pages/WishPage";
 
 //Import Context
 import StoreProvider from "./context/StoreProvider";
-import WishPage from "./pages/WishPage";
+import ProfilPage from "./pages/ProfilPage";
 
 const App = () => {
   const [isActiveMenu, setIsActiveMenu] = useState<boolean>(false);
   const [isActiveCart, setIsActiveCart] = useState<boolean>(false);
+
   const [addedToCart, setAddedToCart] = useState<TProduct[]>([]);
   const [addedToWishlist, setAddedToWishlist] = useState<TProduct[]>([]);
 
@@ -72,6 +74,23 @@ const App = () => {
                   isActiveMenu={isActiveMenu}
                   addedToWishlist={addedToWishlist}
                   setAddedToWishlist={setAddedToWishlist}
+                  addedToCart={addedToCart}
+                  isActiveCart={isActiveCart}
+                  setIsActiveCart={setIsActiveCart}
+                  setAddedToCart={setAddedToCart}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProfilPage
+                  isActiveMenu={isActiveMenu}
+                  setIsActiveMenu={setIsActiveMenu}
+                  isActiveCart={isActiveCart}
+                  setIsActiveCart={setIsActiveCart}
+                  setAddedToCart={setAddedToCart}
+                  addedToCart={addedToCart}
                 />
               }
             />

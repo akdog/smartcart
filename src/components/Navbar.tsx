@@ -23,7 +23,7 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
   const currentLocation = location.pathname;
 
   return (
-    <Main>
+    <Main className="navbar">
       <div className="menu-container">
         <IoMdMenu id="menu-icon" onClick={handleMenu} />
       </div>
@@ -58,10 +58,21 @@ const Navbar = ({ setIsActiveMenu }: Props) => {
             )}
           </div>
         </Link>
-        <div className="single-icon">
-          <FaRegUser size="25" />
-          <p>Profile</p>
-        </div>
+        <Link to="/profile">
+          <div className="single-icon">
+            {currentLocation === "/profile" ? (
+              <>
+                <FaRegUser size="25" color="#4BA4DF" />
+                <p style={{ color: "#4BA4DF" }}>Profile</p>
+              </>
+            ) : (
+              <>
+                <FaRegUser size="25" />
+                <p>Profile</p>
+              </>
+            )}
+          </div>
+        </Link>
         <div className="single-icon">
           <IoMdSearch size="25" />
           <p>Search</p>
@@ -102,6 +113,16 @@ const Main = styled.nav`
       height: 6vh;
 
       padding: 0.2rem;
+    }
+
+    @media (max-width: 375px) {
+      svg {
+        width: 12vw;
+        height: 6vh;
+
+        left: 42%;
+        bottom: 18%;
+      }
     }
   }
 

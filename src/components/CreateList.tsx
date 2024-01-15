@@ -2,7 +2,12 @@ import styled from "styled-components";
 import shoes from "../assets/shoes.png";
 import { useNavigate } from "react-router-dom";
 
-const CreateList = () => {
+type Props = {
+  text: string;
+  topic: string;
+};
+
+const CreateList = ({ text, topic }: Props) => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -14,8 +19,8 @@ const CreateList = () => {
       <div className="img-container">
         <img src={shoes} />
       </div>
-      <h3>You have no Saved Products</h3>
-      <button>+ Create a Wishlist</button>
+      <h3>{text}</h3>
+      <button>+ {topic}</button>
     </Main>
   );
 };

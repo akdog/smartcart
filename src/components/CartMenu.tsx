@@ -19,21 +19,11 @@ const CartMenu = ({
   addedToCart,
   setAddedToCart,
 }: Props) => {
-  const [incValue, setIncValue] = useState<number>(0);
-  const [incNumber, setIncNumber] = useState<number>(1);
-
   const handleCart = () => {
     setIsActiveCart(false);
   };
 
-  const allPrices = addedToCart.map((item) => item.price);
-
-  const sumPrices = allPrices.reduce(
-    (acc, currentValue) => acc + currentValue,
-    0
-  );
-
-  if (addedToCart.length >= 0) {
+  if (addedToCart.length <= 0) {
     return (
       <Main>
         <h3>No Cart Items found...</h3>
@@ -51,16 +41,20 @@ const CartMenu = ({
         <CartItems
           item={item}
           key={item.id}
-          incValue={incValue}
-          setIncValue={setIncValue}
-          incNumber={incNumber}
-          setIncNumber={setIncNumber}
+          addedToCart={addedToCart}
+          setAddedToCart={setAddedToCart}
         />
       ))}
       <div className="cart-total">
         <div className="total">
           <p>Cart Total</p>
-          <p>{sumPrices}</p>
+          <p>
+            {addedToCart.reduce(
+              (acc, currentItem) => acc + currentItem.price,
+              0
+            )}
+            $
+          </p>
         </div>
         <button>Checkout</button>
       </div>
@@ -79,7 +73,7 @@ const Main = styled.div`
   padding: 1rem;
 
   position: sticky;
-  bottom: 6%;
+  bottom: 2%;
 
   .cart-header {
     display: flex;

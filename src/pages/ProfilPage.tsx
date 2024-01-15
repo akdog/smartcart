@@ -1,60 +1,48 @@
 import styled from "styled-components";
 
-//Import Componetns
-import Navbar from "../components/Navbar";
-import Menu from "../components/Menu";
-import FavoriteItems from "../components/FavoriteItems";
-import CreateList from "../components/CreateList";
-import TrendingProducts from "../components/TrendingProducts";
-
 //Import Types
 import { TProduct } from "../types/TProducts";
+
+//Import Components
+import Navbar from "../components/Navbar";
+import AccountContainer from "../components/AccountContainer";
+import ProfileContainer from "../components/ProfileContainer";
 import CartMenu from "../components/CartMenu";
+import Menu from "../components/Menu";
+
+//Import Icons
 import IconContainer from "../components/IconContainer";
 
 type Props = {
   setIsActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  setAddedToWishlist: React.Dispatch<React.SetStateAction<TProduct[]>>;
-  addedToWishlist: TProduct[];
   isActiveMenu: boolean;
-  addedToCart: TProduct[];
   isActiveCart: boolean;
   setIsActiveCart: React.Dispatch<React.SetStateAction<boolean>>;
+  addedToCart: TProduct[];
+
   setAddedToCart: React.Dispatch<React.SetStateAction<TProduct[]>>;
 };
 
-const WishPage = ({
+const ProfilPage = ({
   setIsActiveMenu,
   isActiveMenu,
-  setAddedToWishlist,
-  addedToWishlist,
-  addedToCart,
   isActiveCart,
   setIsActiveCart,
+  addedToCart,
   setAddedToCart,
 }: Props) => {
   return (
     <Main>
       <div className="header">
-        <h1>WishList</h1>
+        <h2>Profile</h2>
         <IconContainer
           addedToCart={addedToCart}
           setIsActiveCart={setIsActiveCart}
           isActiveCart={isActiveCart}
         />
       </div>
-      {addedToWishlist.length > 0 ? (
-        <FavoriteItems addedToWishlist={addedToWishlist} />
-      ) : (
-        <CreateList
-          text="You have no Saved Products"
-          topic="Create a Wishlist"
-        />
-      )}
-      <TrendingProducts
-        setAddedToWishlist={setAddedToWishlist}
-        addedToWishlist={addedToWishlist}
-      />
+      <ProfileContainer />
+      <AccountContainer />
       <Navbar setIsActiveMenu={setIsActiveMenu} />
       {isActiveMenu ? (
         <Menu isActiveMenu={isActiveMenu} setIsActiveMenu={setIsActiveMenu} />
@@ -76,12 +64,16 @@ const WishPage = ({
 };
 
 const Main = styled.div`
+  position: relative;
+
   .header {
+    padding: 0.5rem;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 1rem;
+    width: 100%;
 
     .icon-container {
       display: flex;
@@ -108,6 +100,22 @@ const Main = styled.div`
       }
     }
   }
+
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    padding: 2rem;
+
+    width: 95%;
+    margin: 0 auto;
+  }
 `;
 
-export default WishPage;
+export default ProfilPage;
