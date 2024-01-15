@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 import { TProduct } from "../types/TProducts";
@@ -13,12 +12,7 @@ type Props = {
   setAddedToCart: React.Dispatch<React.SetStateAction<TProduct[]>>;
 };
 
-const CartMenu = ({
-  isActiveCart,
-  setIsActiveCart,
-  addedToCart,
-  setAddedToCart,
-}: Props) => {
+const CartMenu = ({ setIsActiveCart, addedToCart, setAddedToCart }: Props) => {
   const handleCart = () => {
     setIsActiveCart(false);
   };

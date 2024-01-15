@@ -20,7 +20,6 @@ import { FaCheck } from "react-icons/fa";
 import SinlgeProductInfo from "../components/SinlgeProductInfo";
 import SinlgeProductDes from "../components/SinlgeProductDes";
 import CartNavbar from "../components/CartNavbar";
-import CartMenu from "../components/CartMenu";
 
 type Props = {
   addedToCart: TProduct[];
