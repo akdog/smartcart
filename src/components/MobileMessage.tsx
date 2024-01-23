@@ -14,7 +14,10 @@ const MobileMessage = () => {
 
   return (
     <MessageContainer>
-      <p>For the best experience, please switch to mobile view.</p>
+      <p>
+        For the best experience, please switch to mobile view. Press F12 and
+        Pick the Mobile desired to your needs
+      </p>
     </MessageContainer>
   );
 };
