@@ -1,41 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const MobileMessage = () => {
-  useEffect(() => {
-    // Disable scrolling on mount
-    document.body.style.overflow = "hidden";
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
-    // Re-enable scrolling on unmount
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
-      document.body.style.overflow = "visible";
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  return (
+  return isDesktop ? (
     <MessageContainer>
       <p>
         For the best experience, please switch to mobile view. Press F12 and
         Pick the Mobile desired to your needs
       </p>
     </MessageContainer>
-  );
+  ) : null;
 };
 
 const MessageContainer = styled.div`
-  display: none;
-
-  @media only screen and (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 0.75rem;
-    text-align: center;
-
-    height: 110vh;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  text-align: center;
+  height: 110vh;
 `;
 
 export default MobileMessage;
